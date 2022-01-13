@@ -1,5 +1,8 @@
 import Navigo from "navigo";
+import AdminNews from "./components/AdminNews";
+import Dashboard from "./components/Dashboard";
 import DetailNews from "./components/DetailNews";
+
 import SignInForm from "./components/SignInForm";
 import SignUpForm from "./components/SignUpForm";
 import HomePage from "./page/HomePage";
@@ -17,15 +20,15 @@ router.on({
     "/news": () => {
         print(News.render());
     },
-    "/news/detail": (value) => {
+    "/news/detail/:id": (value) => {
         console.log(value);
-        print(DetailNews.render(value.params.id));
     },
     "/signup": () => {
         print(SignUpForm.render());
     },
     "signin": () => {
         print(SignInForm.render());
+
     }
 });
 
