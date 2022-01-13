@@ -1,6 +1,8 @@
 import Navigo from "navigo";
-import Dashboard from "./components/Dashboard";
+
 import DetailNews from "./components/DetailNews";
+import NewsAdd from "./components/NewsAdd";
+import NewsEdit from "./components/NewsEdit";
 import HomePage from "./page/HomePage";
 import News from "./page/News";
 const router = new Navigo("/", { linksSelector: "a" });
@@ -20,8 +22,7 @@ router.on({
         console.log(value);
         print(DetailNews.render(value.params.id));
     },
-    "/admin/dashboard": () => {
-        print(Dashboard.render());
+
     }
 });
 
