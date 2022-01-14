@@ -6,7 +6,7 @@ const listItem = data.map(item => {
         <div class="relative w-full h-40 overflow-hidden">
             <img src="${item.img}" class="w-full h-full object-cover absolute"/>
         </div>
-        <a href="news/detail/${item.id}" class="font-bold text-blue-900 text-xl">${item.title}</a>
+        <a href="news/${item.id}" class="font-bold text-blue-900 text-xl">${item.title}</a>
         <div class="text-gray-400 text-sm ">${item.desc}</div>
     </div>
     `;

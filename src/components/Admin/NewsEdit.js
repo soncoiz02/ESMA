@@ -1,4 +1,4 @@
-import data from "../data";
+import data from "../../data";
 const NewsEdit = {
     render: (id) => {
         const detail = data.find(e => e.id === id);

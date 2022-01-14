@@ -1,13 +1,16 @@
 import Navigo from "navigo";
-import AdminNews from "./components/AdminNews";
-import Dashboard from "./components/Dashboard";
-import NewsAdd from "./components/NewsAdd";
-import NewsEdit from "./components/NewsEdit";
-import SignInForm from "./components/SignInForm";
-import SignUpForm from "./components/SignUpForm";
+import AdminNews from "./page/Admin/News";
+import Dashboard from "./components/Admin/Dashboard";
+import LayoutSite from "./components/LayoutSite";
+import NewsAdd from "./components/Admin/NewsAdd";
+import NewsEdit from "./components/Admin/NewsEdit";
+import SignInForm from "./components/Site/SignInForm";
+import SignUpForm from "./components/Site/SignUpForm";
+import DetailNews from "./components/Site/DetailNews";
 
 import HomePage from "./page/HomePage";
 import News from "./page/News";
+import LayoutAdmin from "./components/LayoutAdmin";
 const router = new Navigo("/", { linksSelector: "a" });
 
 const print = (content) => {
@@ -16,28 +19,31 @@ const print = (content) => {
 
 router.on({
     "/": () => {
-        print(HomePage.render());
+        print(LayoutSite.render(HomePage));
     },
     "/news": () => {
-        print(News.render());
+        print(LayoutSite.render(News));
+    },
+    "/news/:id": (value) => {
+        print(LayoutSite.render(DetailNews, value.data.id));
     },
     "/admin/dashboard": () => {
-        print(Dashboard.render());
+        print(LayoutAdmin.render(Dashboard));
     },
     "/admin/news": () => {
-        print(AdminNews.render());
+        print(LayoutAdmin.render(AdminNews));
     },
     "/admin/news/add": () => {
-        print(NewsAdd.render());
+        print(LayoutAdmin.render(NewsAdd));
     },
     "/admin/news/edit/:id": (value) => {
-        print(NewsEdit.render(value.data.id));
+        print(LayoutAdmin.render(NewsEdit, value.data.id));
     },
     "/signin": () => {
-        print(SignInForm.render());
+        print(LayoutSite.render(SignInForm));
     },
     "/signup": () => {
-        print(SignUpForm.render());
+        print(LayoutSite.render(SignUpForm));
     }
 });
 
