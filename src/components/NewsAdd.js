@@ -17,7 +17,6 @@ const NewsAdd = {
                         </div>
                     </div>
                     </div>
-
                     <div>
                     <label for="about" class="block text-sm font-medium text-gray-700">
                         Description
@@ -26,7 +25,6 @@ const NewsAdd = {
                         <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 outline-none mt-1 block py-3 px-3 w-full sm:text-sm border border-gray-300 rounded-md" placeholder="News description"></textarea>
                     </div>
                     </div>
-
                     <div>
                     <label class="block text-sm font-medium text-gray-700">
                         News photo
@@ -64,4 +62,4 @@ const NewsAdd = {
     }
 };
 
-export default NewsAdd;
+export default NewsAdd; 

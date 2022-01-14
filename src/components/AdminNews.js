@@ -55,4 +55,4 @@ const AdminNews = {
     }
 };
 
-export default AdminNews;
+export default AdminNews; 
