@@ -1,4 +1,5 @@
 import Navigo from "navigo";
+import Dashboard from "./components/Dashboard";
 
 import HomePage from "./page/HomePage";
 import News from "./page/News";
@@ -15,10 +16,8 @@ router.on({
     "/news": () => {
         print(News.render());
     },
-    "/news/detail/:id": (value) => {
-        console.log(value);
-
-
+    "/admin/dashboard": () => {
+        print(Dashboard.render());
     }
 });
 
