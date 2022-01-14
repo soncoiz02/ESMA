@@ -13,8 +13,7 @@ const LayoutSite = {
                 <li><a href="/signup" class="text-white hover:underline">Sign up</a></li>
                 </ul>
                 <div class="form">
-                <input type="text" class="py-1 px-2">
-                <button class="ml-2 bg-blue-900 border-zinc-50 px-5 py-1 text-white">Tìm kiếm</button>
+                    <a href="/admin/dashboard" class="ml-2 bg-blue-900 border-zinc-50 px-5 py-1 text-white">Admin</a>
                 </div>
             </div>
             </header>
