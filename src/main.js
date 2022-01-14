@@ -1,5 +1,8 @@
 import Navigo from "navigo";
+import AdminNews from "./components/AdminNews";
 import Dashboard from "./components/Dashboard";
+import NewsAdd from "./components/NewsAdd";
+import NewsEdit from "./components/NewsEdit";
 
 import HomePage from "./page/HomePage";
 import News from "./page/News";
@@ -18,6 +21,15 @@ router.on({
     },
     "/admin/dashboard": () => {
         print(Dashboard.render());
+    },
+    "/admin/news": () => {
+        print(AdminNews.render());
+    },
+    "/admin/news/add": () => {
+        print(NewsAdd.render());
+    },
+    "/admin/news/edit/:id": (value) => {
+        print(NewsEdit.render(value.data.id));
     }
 });
 
