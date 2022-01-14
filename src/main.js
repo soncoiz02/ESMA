@@ -3,6 +3,8 @@ import AdminNews from "./components/AdminNews";
 import Dashboard from "./components/Dashboard";
 import NewsAdd from "./components/NewsAdd";
 import NewsEdit from "./components/NewsEdit";
+import SignInForm from "./components/SignInForm";
+import SignUpForm from "./components/SignUpForm";
 
 import HomePage from "./page/HomePage";
 import News from "./page/News";
@@ -30,6 +32,12 @@ router.on({
     },
     "/admin/news/edit/:id": (value) => {
         print(NewsEdit.render(value.data.id));
+    },
+    "/signin": () => {
+        print(SignInForm.render());
+    },
+    "/signup": () => {
+        print(SignUpForm.render());
     }
 });
 
