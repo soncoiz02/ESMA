@@ -1,6 +1,5 @@
 const LayoutSite = {
-    render: (children, param) => {
-        console.log(param);
+    render: async (children, param) => {
         return `
             <div class="container mx-auto max-w-6xl flex-col">
             <header>
@@ -18,7 +17,7 @@ const LayoutSite = {
             </div>
             </header>
             <main>
-                ${param ? children.render(param) : children.render()}
+                ${await children.render(param)}
             </main>
             <footer class="w-full bg-slate-800 text-white text-center py-4 mt-4">Trần Bảo Sơn PH17733</footer>
         </div>

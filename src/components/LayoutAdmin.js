@@ -1,5 +1,5 @@
 const LayoutAdmin = {
-    render: (children, param) => {
+    render: async (children, param) => {
 
         return /*html*/`
             <div class="min-h-full">
@@ -56,7 +56,7 @@ const LayoutAdmin = {
                     </div>
                 </nav>
                 <main>
-                    ${param ? children.render(param) : children.render()}
+                    ${await children.render(param)}
                 </main>
                 </div>
         `;

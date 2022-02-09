@@ -1,19 +1,20 @@
-import data from "../data";
-
-const listItem = data.map(item => {
-    return /*html*/`
-    <div class="w-1/4 flex flex-col items-center gap-y-1">
-        <div class="relative w-full h-40 overflow-hidden">
-            <img src="${item.img}" class="w-full h-full object-cover absolute"/>
-        </div>
-        <a href="news/${item.id}" class="font-bold text-blue-900 text-xl">${item.title}</a>
-        <div class="text-gray-400 text-sm ">${item.desc}</div>
-    </div>
-    `;
-});
+import { getAll } from "../api/post";
 
 const News = {
-    render: () => {
+    render: async () => {
+        const { data } = await getAll();
+        const listItem = data.map(item => {
+            return /*html*/`
+            <div class="w-1/4 flex flex-col items-center gap-y-1">
+                <div class="relative w-full h-40 overflow-hidden">
+                    <img src="${item.img}" class="w-full h-full object-cover absolute"/>
+                </div>
+                <a href="news/${item.id}" class="font-bold text-blue-900 text-xl">${item.title}</a>
+                <div class="text-gray-400 text-sm ">${item.desc}</div>
+            </div>
+            `;
+        });
+
         return /*html*/`
         <div class="flex flex-col gap-y-5 w-full my-4">
             <div class="font-bold text-2xl text-blue-900">Tin tức mới nhất</div>

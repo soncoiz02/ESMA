@@ -1,0 +1,48 @@
+{
+  "posts": [
+    {
+      "createdAt": "2022-01-22T19:36:06.660Z",
+      "title": "Traci King",
+      "img": "http://placeimg.com/640/480/abstract",
+      "desc": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+      "id": 33
+    },
+    {
+      "createdAt": "2022-01-23T13:16:11.601Z",
+      "title": "Bai viet thay Dat moi cho vao, dung co xoa, xoa cai dam phat chet luon",
+      "img": "https://picsum.photos/200/200",
+      "desc": "Mo ta san pham",
+      "id": 39
+    },
+    {
+      "createdAt": "2022-01-22T17:16:11.802Z",
+      "title": "Joanne Corwin",
+      "img": "",
+      "desc": "gggg",
+      "id": 40
+    },
+    {
+      "createdAt": "2022-01-23T08:38:15.240Z",
+      "title": "Jonathan Daniel",
+      "img": "",
+      "desc": "ffff",
+      "id": 41
+    },
+    {
+      "createdAt": "2022-01-23T22:35:10.709Z",
+      "title": "Cấm xóa bài này",
+      "img": "https://media.istockphoto.com/vectors/400x400-vector-id1216465339",
+      "desc": "Mo ta san pham",
+      "id": 42
+    }
+  ],
+  "products": [],
+  "user": [
+    {
+      "username": "soncoiz02",
+      "email": "soncoiz3107@gmail.com",
+      "password": "soncoiz02",
+      "id": 1
+    }
+  ]
+}

@@ -1,9 +1,9 @@
-import data from "../../data";
+import { getAll, postDelete } from "../../api/post";
 
 const AdminNews = {
-    render: () => {
-        const listItem = data.map(item => {
-            return `
+    async render() {
+        const { data } = await getAll();
+        const listItem = data.map(item => `
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="w-16 h-16 overflow-hidden rounded-md relative">
@@ -19,9 +19,14 @@ const AdminNews = {
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="/admin/news/edit/${item.id}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                     </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <p class="text-red-600 cursor-pointer" id="btn-delete" data-id=${item.id}>Delete</p>
+                    </td>
                 </tr>
-            `;
-        });
+            `
+        );
+
+
         return /*html*/`
             <div class="lg:flex lg:items-center lg:justify-between py-5 px-5">
                 <div class="flex-1 min-w-0">
@@ -43,7 +48,7 @@ const AdminNews = {
                 </span>
                 </div>
             </div>
-            <main>
+            <main class="lg:flex lg:items-center lg:justify-center">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -63,6 +68,9 @@ const AdminNews = {
                             <th scope="col" class="relative px-6 py-3">
                                 <span class="sr-only">Edit</span>
                             </th>
+                            <th scope="col" class="relative px-6 py-3">
+                                <span class="sr-only">Delete</span>
+                            </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -75,6 +83,14 @@ const AdminNews = {
             </div>
             </main>
         `;
+    },
+
+    afterRender() {
+        const btnDelete = document.querySelector("#btn-delete");
+        btnDelete.onclick = () => {
+            const id = btnDelete.dataset.id;
+            postDelete(id);
+        };
     }
 };
 

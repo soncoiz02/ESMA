@@ -1,22 +1,21 @@
-import data from "../../data";
-const NewsEdit = {
-    render: (id) => {
-        const detail = data.find(e => e.id === id);
+import { edit, get } from "../../api/post";
 
+const NewsEdit = {
+    render: async (id) => {
+        const { data } = await get(id);
         return /*html*/`
             <div>
-                <div class="md:grid md:grid-cols-3 md:gap-6 w-full">
-                    <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form action="#" method="POST">
+                <div class="flex w-full px-16">
+                    <form action="#" class="w-full my-10" method="POST">
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                             <div class="grid grid-cols-3 gap-6">
                             <div class="col-span-3 sm:col-span-2">
                                 <label for="company-website" class="block text-sm font-medium text-gray-700">
-                                Title
+                                    Title
                                 </label>
                                 <div class="mt-1 flex rounded-md shadow-sm w-full">
-                                <input type="text" name="company-website" value=${detail.title} id="company-website" class="focus:ring-indigo-500 outline-none focus:border-indigo-500 flex-1 block w-full py-3 px-3 rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="News title">
+                                <input type="text" value=${data.title} id="title" class="focus:ring-indigo-500 outline-none focus:border-indigo-500 flex-1 block w-full py-3 px-3 rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="News title">
                                 </div>
                             </div>
                             </div>
@@ -25,7 +24,7 @@ const NewsEdit = {
                                 Description
                             </label>
                             <div class="mt-1">
-                                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 outline-none mt-1 block py-3 px-3 w-full sm:text-sm border border-gray-300 rounded-md" placeholder="News description">${detail.desc}</textarea>
+                                <textarea id="desc" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 outline-none mt-1 block py-3 px-3 w-full sm:text-sm border border-gray-300 rounded-md" placeholder="News description">${data.desc}</textarea>
                             </div>
                             </div>
                             <div>
@@ -33,7 +32,7 @@ const NewsEdit = {
                                 News photo
                             </label>
                             <div class="w-52 h-52 overflow-hidden rounded-md relative my-4">
-                                <img src=${detail.img} class="w-full h-full object-cover absolute" />
+                                <img src=${data.img} class="w-full h-full object-cover absolute" />
                             </div>
                             <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                 <div class="space-y-1 text-center">
@@ -53,18 +52,34 @@ const NewsEdit = {
                                 </div>
                             </div>
                             </div>
+                            <input type="hidden" id="id" value=${id}>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Save
+                            <button id="btn-edit" type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Save
                             </button>
                         </div>
                         </div>
                     </form>
-                    </div>
                 </div>
             </div>
         `;
+    },
+    afterRender: () => {
+        const btnEdit = document.querySelector("#btn-edit");
+        btnEdit.onclick = (e) => {
+            e.preventDefault();
+            const title = document.querySelector("#title").value;
+            const desc = document.querySelector("#desc").value;
+            const id = document.querySelector("#id").value;
+
+            const dataEdit = {
+                title: title,
+                desc: desc
+            };
+
+            edit(id, dataEdit);
+        };
     }
 };
 
