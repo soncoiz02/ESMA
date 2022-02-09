@@ -8,11 +8,10 @@ const LayoutSite = {
                 <ul class="link flex gap-3 px-5 py-3">
                 <li><a href="/" class="text-white hover:underline">Home</a></li>
                 <li><a href="/news" class="text-white hover:underline">News</a></li>
-                <li><a href="/signin" class="text-white hover:underline">Sign in</a></li>
-                <li><a href="/signup" class="text-white hover:underline">Sign up</a></li>
+                <li><a href="/admin/dashboard" class="text-white hover:underline">Admin</a></li>
                 </ul>
                 <div class="form">
-                    <a href="/admin/dashboard" class="ml-2 bg-blue-900 border-zinc-50 px-5 py-1 text-white">Admin</a>
+                    <a href="/signin" class="ml-2 bg-blue-900 border-zinc-50 px-5 py-1 text-white">Sign In</a>
                 </div>
             </div>
             </header>
