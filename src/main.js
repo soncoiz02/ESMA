@@ -11,12 +11,31 @@ import DetailNews from "./components/Site/DetailNews";
 import HomePage from "./page/HomePage";
 import News from "./page/News";
 import LayoutAdmin from "./components/LayoutAdmin";
+import Products from "./page/Products";
 const router = new Navigo("/", { linksSelector: "a" });
 
 const print = async (content, page, id = "") => {
     document.getElementById("app").innerHTML = await content.render(page, id);
     if (page.afterRender) page.afterRender();
+    if (content.afterRender) content.afterRender();
 };
+
+router.on("/admin/*", () => { }, {
+    before(done, match) {
+        // do something
+        if (localStorage.getItem("user")) {
+            const userId = JSON.parse(localStorage.getItem("user")).id;
+            if (userId === 1) {
+                done();
+            } else {
+                document.location.href = "/";
+            }
+        } else {
+            document.location.href = "/";
+        }
+
+    }
+});
 
 router.on({
     "/": () => {
@@ -27,6 +46,9 @@ router.on({
     },
     "/news/:id": (value) => {
         print(LayoutSite, DetailNews, value.data.id);
+    },
+    "/products": () => {
+        print(LayoutSite, Products);
     },
     "/admin/dashboard": () => {
         print(LayoutAdmin, Dashboard);

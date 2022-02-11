@@ -1,7 +1,7 @@
 import { getAll } from "../api/post";
 
 const News = {
-    render: async () => {
+    async render() {
         const { data } = await getAll();
         const listItem = data.map(item => {
             return /*html*/`
