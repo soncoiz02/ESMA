@@ -1,4 +1,4 @@
-import { getAll } from "../api/products";
+import { getAll } from "../../api/products";
 
 const Products = {
     async render() {
@@ -20,7 +20,7 @@ const Products = {
                 <div class="relative aspect-square rounded-xl overflow-hidden shadow-[0_0_5px_1px_rgba(0,0,0,0.1)]">
                     <img src="${e.img}" class="w-full h-full object-cover">
                 </div>
-                <a href="#" class="font-bold text-blue-900 mt-1 text-lg">${e.name}</a>
+                <a href="/products/${e.id}" class="font-bold text-blue-900 mt-1 text-lg">${e.name}</a>
                 <div class="text-sm">${e.dsc}</div>
                 <div class="absolute -top-1 -right-1 px-5 py-1 bg-red-500 rounded font-bold text-sm text-white">$${e.price}</div>
                 <div class="absolute px-1 py-1 rounded bg-blend-darken flex flex-col justify-between gap-y-1 bg-indigo-50">${renderStar(e.rate)}</div>

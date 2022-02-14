@@ -11,7 +11,8 @@ import DetailNews from "./components/Site/DetailNews";
 import HomePage from "./page/HomePage";
 import News from "./page/News";
 import LayoutAdmin from "./components/LayoutAdmin";
-import Products from "./page/Products";
+import Products from "./page/product/Products";
+import DetailProduct from "./page/product/DetailProduct";
 const router = new Navigo("/", { linksSelector: "a" });
 
 const print = async (content, page, id = "") => {
@@ -49,6 +50,9 @@ router.on({
     },
     "/products": () => {
         print(LayoutSite, Products);
+    },
+    "/products/:id": (value) => {
+        print(LayoutSite, DetailProduct, value.data.id);
     },
     "/admin/dashboard": () => {
         print(LayoutAdmin, Dashboard);
