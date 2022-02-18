@@ -2,7 +2,7 @@
   "posts": [
     {
       "createdAt": "2022-01-22T19:36:06.660Z",
-      "title": "Traci King",
+      "title": "ABC",
       "img": "http://placeimg.com/640/480/abstract",
       "desc": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
       "id": 33
@@ -174,6 +174,12 @@
       "email": "soncoiz3107@gmail.com",
       "password": "soncoiz02",
       "id": 1
+    },
+    {
+      "username": "soncoiz",
+      "email": "sontbph17733@fpt.edu.vn",
+      "password": "soncoiz",
+      "id": 2
     }
   ]
 }

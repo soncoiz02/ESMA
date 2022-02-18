@@ -6,9 +6,10 @@ const Header = {
         <div class="flex justify-between items-center bg-yellow-600 px-5">
             <ul class="link flex gap-3 px-5 py-3">
             <li><a href="/" class="text-white hover:underline">Home</a></li>
-            <li><a href="/news" class="text-white hover:underline">News</a></li>
-            <li><a href="/products" class="text-white hover:underline">Products</a></li>
-            <li><a href="/admin/dashboard" class="text-white hover:underline">Admin</a></li>
+            <li><a href="/#/news" class="text-white hover:underline">News</a></li>
+            <li><a href="/#/products" class="text-white hover:underline">Products</a></li>
+            <li><a href="/#/cart" class="text-white hover:underline">Cart</a></li>
+            <li><a href="/#/admin/dashboard" class="text-white hover:underline">Admin</a></li>
             </ul>
             <div class="user flex gap-x-2">
                 <a href="/signin" class="ml-2 bg-blue-900 border-zinc-50 px-5 py-1 text-white">Sign In</a>
@@ -19,7 +20,6 @@ const Header = {
     afterRender() {
         const user = JSON.parse(localStorage.getItem("user"));
         const userEl = document.querySelector(".user");
-        console.log(user);
         if (user) {
             userEl.innerHTML = /*html*/`
                 <p class="font-bold text-white">${user.username}</p>

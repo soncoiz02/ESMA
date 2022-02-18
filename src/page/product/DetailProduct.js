@@ -37,7 +37,6 @@ const DetailProduct = {
             quantityEl.value = Number(quantityEl.value) - 1;
         };
 
-
         const btnAddToCart = document.querySelector(".btn-add");
         btnAddToCart.onclick = async () => {
             if (checkLogin) {

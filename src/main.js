@@ -13,7 +13,9 @@ import News from "./page/News";
 import LayoutAdmin from "./components/LayoutAdmin";
 import Products from "./page/product/Products";
 import DetailProduct from "./page/product/DetailProduct";
-const router = new Navigo("/", { linksSelector: "a" });
+import Cart from "./page/Cart";
+
+const router = new Navigo("/", { linksSelector: "a", hash: true });
 
 const print = async (content, page, id = "") => {
     document.getElementById("app").innerHTML = await content.render(page, id);
@@ -53,6 +55,9 @@ router.on({
     },
     "/products/:id": (value) => {
         print(LayoutSite, DetailProduct, value.data.id);
+    },
+    "/cart": () => {
+        print(LayoutSite, Cart);
     },
     "/admin/dashboard": () => {
         print(LayoutAdmin, Dashboard);
