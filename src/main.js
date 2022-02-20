@@ -1,9 +1,9 @@
 import Navigo from "navigo";
-import AdminNews from "./page/Admin/News";
-import Dashboard from "./components/Admin/Dashboard";
+import AdminNews from "./page/Admin/new/News";
+import Dashboard from "./page/Admin/Dashboard";
 import LayoutSite from "./components/LayoutSite";
-import NewsAdd from "./components/Admin/NewsAdd";
-import NewsEdit from "./components/Admin/NewsEdit";
+import NewsAdd from "./page/Admin/new/NewsAdd";
+import NewsEdit from "./page/Admin/new/NewsEdit";
 import SignIn from "./page/SignIn";
 import SignUp from "./page/SignUp";
 import DetailNews from "./components/Site/DetailNews";
@@ -14,6 +14,8 @@ import LayoutAdmin from "./components/LayoutAdmin";
 import Products from "./page/product/Products";
 import DetailProduct from "./page/product/DetailProduct";
 import Cart from "./page/Cart";
+import AdminProduct from "./page/Admin/product/Product";
+import ProductAdd from "./page/Admin/product/ProductAdd";
 
 const router = new Navigo("/", { linksSelector: "a", hash: true });
 
@@ -50,11 +52,11 @@ router.on({
     "/news/:id": (value) => {
         print(LayoutSite, DetailNews, value.data.id);
     },
-    "/products": () => {
-        print(LayoutSite, Products);
-    },
     "/products/:id": (value) => {
         print(LayoutSite, DetailProduct, value.data.id);
+    },
+    "/products/:cate": (value) => {
+        print(LayoutSite, Products, value.data.cate);
     },
     "/cart": () => {
         print(LayoutSite, Cart);
@@ -64,6 +66,12 @@ router.on({
     },
     "/admin/news": () => {
         print(LayoutAdmin, AdminNews);
+    },
+    "/admin/products": () => {
+        print(LayoutAdmin, AdminProduct);
+    },
+    "/admin/products/add": () => {
+        print(LayoutAdmin, ProductAdd);
     },
     "/admin/news/add": () => {
         print(LayoutAdmin, NewsAdd);

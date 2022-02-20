@@ -1,37 +1,58 @@
-import { getAll } from "../api/post";
-import bg from "../img/bg.jpg";
+import banner from "../img/banner.jpg";
+import { getAll as getProduct } from "../api/products";
+import { getAll as getPost } from "../api/post";
 
 const HomePage = {
   async render() {
-    const { data } = await getAll();
-    const listItem = data.slice(0, 3).map(e => /*html*/`
-      <div class="item flex flex-col border-2 border-zinc-400 px-4 py-3 mt-4 w-1/3">
-        <div class="bg-yellow-600 h-64 w-full relative overflow-hidden">
-          <img src="${e.img}" class="absolute w-full h-full object-cover"/>
+
+    const resProduct = await getProduct();
+    const dataProduct = await resProduct.data;
+
+    const resPost = await getPost();
+    const dataPost = await resPost.data;
+
+    const listProducts = dataProduct.slice(0, 5).map(e => /*html*/`
+      <div class="flex flex-col w-56 relative">
+        <div class="w-full aspect-square rounded-lg overflow-hidden">
+          <img src="${e.img}" class="w-full h-full object-cover ">
         </div>
-        <div class="font-bold text-yellow-700 text-lg w-full leading-6 mt-3">
-          ${e.title}
-        </div>
-        <div class="w-full leading-4 mt-4">
-          ${e.desc}
-        </div>
+        <a href="/products/${e.id}" class="font-bold text-gray-600 text-lg mt-1 hover:text-red-500">${e.name}</a>
+        <p class="text-gray-400 text-sm text-ellipsis overflow-x-hidden whitespace-nowrap">${e.dsc}</p>
+        <p class="absolute rounded-[50px] bg-red-500 font-bold leading-10 text-center pointer-events-none text-sm text-white w-10 h-10 -top-2 -right-2">New</p>
+        <p class="ml-auto mt-1 font-bold rounded-[50px] w-10 h-10 border-2 border-white bg-red-500 text-center text-white leading-8 absolute top-1 left-1">$${e.price}</p>
       </div>
-    `);
+    `).join("");
+
+    const listPosts = dataPost.slice(0, 5).map(e => /*html*/`
+       <div class="flex flex-col w-56 relative">
+        <div class="w-full aspect-square rounded-lg overflow-hidden">
+          <img src="${e.img}" class="w-full h-full object-cover ">
+        </div>
+        <a href="/news/${e.id}" class="font-bold text-gray-600 text-lg mt-1 hover:text-red-500">${e.title}</a>
+        <p class="text-gray-400 text-sm text-ellipsis overflow-x-hidden whitespace-nowrap">${e.desc}</p>
+        <p class="absolute rounded-[50px] bg-red-500 font-bold leading-10 text-center pointer-events-none text-sm text-white w-10 h-10 -top-2 -right-2">New</p>
+      </div>
+    `).join("");
 
     return /*html*/`
-      <div class="banner bg-yellow-600 h-72 mt-3 text-center relative overflow-hidden">
-        <img src=${bg} class="w-full h-full absolute object-cover" />
+      <div class="h-72 text-center relative overflow-hidden">
+        <img src=${banner} class="w-full h-full absolute object-cover" />
       </div>
-      <div class="flex-col gap-y-4">
-        <h2 class="text-blue-900 text-xl font-bold">Tin tức học tập</h2>
-        <div class="list flex justify-between w-full gap-x-6">
-        ${listItem.join("")}
+      <div class="max-w-7xl flex flex-col gap-y-3 mx-auto py-10">
+        <div class="flex-col gap-y-4">
+          <h2 class="text-gray-500 text-3xl font-bold">Latest Dishs</h2>
+          <div class="list flex justify-between w-full gap-x-6 mt-5"> 
+            ${listProducts}
+          </div>
+          </div>
       </div>
-      <div class="flex-col gap-y-4">
-        <h2 class="text-blue-900 text-xl font-bold">Hoạt động sinh viên</h2>
-        <div class="list flex justify-between w-full gap-x-6">
-          ${listItem.join("")}
-        </div>
+      <div class="max-w-7xl flex flex-col gap-y-3 mx-auto py-10">
+        <div class="flex-col gap-y-4">
+          <h2 class="text-gray-500 text-3xl font-bold">Latest News</h2>
+          <div class="list flex justify-between w-full gap-x-6 mt-5"> 
+            ${listPosts}
+          </div>
+          </div>
       </div>
     `;
   }

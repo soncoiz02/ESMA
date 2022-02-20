@@ -8,7 +8,7 @@ const Products = {
 
         const resCate = await instance.get("http://localhost:3001/cateProducts");
         const dataCate = await resCate.data;
-        const currentCateId = dataCate.find(e => e.name.toLowerCase() == cate).id;
+        const currentCateId = dataCate.find(e => e.name.toLowerCase() == cate)?.id;
 
         const searchVal = searchParam.get("q");
 
@@ -67,26 +67,26 @@ const Products = {
                         </div>
                         </div >
                     </div >
-    <div class="w-[calc(100%_-_240px)] px-5 flex flex-col mx-auto gap-y-5">
-        <form class="flex items-center relative w-96">
-            <input type="text" id="search" placeholder="Search" class="py-2 px-5 w-96 rounded-[50px] border border-red-500 outline-none">
-                <button data-cate="${cate}" id="btn-search" class="absolute right-3 bg-red-500 rounded-[50px] w-7 h-7 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="white">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </button>
-        </form>
-        <div class="flex flex-col gap-y-3 items-center">
-            <div class="w-full flex justify-between gap-y-5 gap-x-3 flex-wrap">
-                ${listItem}
-            </div>
-            <div class="flex gap-x-3">
-                <button data-cate="${cate}" class="btn-prev w-10 h-6 text-sm text-center leading-6 rounded bg-red-500 text-white">Prev</button>
-                <div class="show-page w-6 h-6 rounded bg-gray-300 text-center text-sm"></div>
-                <button data-cate="${cate}" class="btn-next w-10 h-6 text-sm text-center leading-6 rounded bg-red-500 text-white">Next</button>
-            </div>
-        </div>
-    </div>
+                    <div class="w-[calc(100%_-_240px)] px-5 flex flex-col mx-auto gap-y-5">
+                        <form class="flex items-center relative w-96">
+                            <input type="text" id="search" placeholder="Search" class="py-2 px-5 w-96 rounded-[50px] border border-red-500 outline-none">
+                                <button data-cate="${cate}" id="btn-search" class="absolute right-3 bg-red-500 rounded-[50px] w-7 h-7 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="white">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </button>
+                        </form>
+                        <div class="flex flex-col gap-y-3 items-center">
+                            <div class="w-full flex justify-between gap-y-5 gap-x-3 flex-wrap">
+                                ${listItem}
+                            </div>
+                            <div class="flex gap-x-3">
+                                <button data-cate="${cate}" class="btn-prev w-10 h-6 text-sm text-center leading-6 rounded bg-red-500 text-white">Prev</button>
+                                <div class="show-page w-6 h-6 rounded bg-gray-300 text-center text-sm"></div>
+                                <button data-cate="${cate}" class="btn-next w-10 h-6 text-sm text-center leading-6 rounded bg-red-500 text-white">Next</button>
+                            </div>
+                        </div>
+                    </div>
                 </div >
             </div >
     `;
@@ -95,9 +95,6 @@ const Products = {
 
         const btnSearch = document.querySelector("#btn-search");
         const currentPage = Number(searchParam.get("_page"));
-        const searchVal = searchParam.get("q");
-        const orderType = searchParam.get("_order");
-        const sortBy = searchParam.get("_sort");
 
         btnSearch.onclick = (e) => {
             e.preventDefault();

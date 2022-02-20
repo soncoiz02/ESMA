@@ -24,7 +24,7 @@ const Cart = {
 
         return /*html*/`
 
-            <div class="w-full flex flex-col gap-y-5">
+            <div class="max-w-7xl flex mx-auto py-10 min-h-screen flex-col gap-y-5">
                 ${listItem}
             </div>
 

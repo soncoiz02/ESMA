@@ -7,8 +7,9 @@ const DetailProduct = {
     async render(id) {
         const { data } = await get(id);
         return /*html*/`
+        <div class="max-w-7xl flex mx-auto py-10 min-h-screen">
             <div class="w-full flex gap-x-20 py-12">
-                <div class="w-80 aspect-square overflow-hidden rounded-3xl">
+                <div class="w-80 h-80 aspect-square overflow-hidden rounded-3xl">
                     <img src="${data.img}" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col gap-y-3">
@@ -22,7 +23,8 @@ const DetailProduct = {
                     </div>
                     <button data-id="${id}" class="btn-add rounded bg-orange-400 py-3 mt-5 font-bold text-white">Add to cart</button>
                 </div>
-            </div>
+            </div>  
+        </div>
         `;
     },
     afterRender() {
@@ -39,7 +41,7 @@ const DetailProduct = {
 
         const btnAddToCart = document.querySelector(".btn-add");
         btnAddToCart.onclick = async () => {
-            if (checkLogin) {
+            if (checkLogin == true) {
                 const id = btnAddToCart.dataset.id;
                 const { data } = await get(id);
 
@@ -51,7 +53,7 @@ const DetailProduct = {
                 addToCart(cartData, () => { toastr.success("Add to cart successfully"); });
             }
             else {
-                location.href = "/login";
+                location.href = "/signin";
             }
         };
     }

@@ -2,8 +2,14 @@ let cart = [];
 if (localStorage.getItem("cart")) {
     cart = JSON.parse(localStorage.getItem("cart"));
 }
-const userId = JSON.parse(localStorage.getItem("user")).id;
-const userCart = cart.find(e => e.uid == userId);
+
+let userId = "";
+let userCart = {};
+const user = JSON.parse(localStorage.getItem("user"));
+if (user) {
+    userId = user.id;
+    userCart = cart.find(e => e.uid == userId);
+}
 
 export const addToCart = (data, next) => {
     if (cart.length > 0) {
