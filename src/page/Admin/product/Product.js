@@ -1,9 +1,17 @@
-import { getAll } from "../../../api/products";
+import { deleteProduct, getAll, getFilter } from "../../../api/products";
+import { reRender } from "../../../utils/reRender";
+
+const searchParam = new URL(window.location).searchParams;
 
 const AdminProduct = {
     async render() {
+        const param = location.search;
+        const { data } = await getFilter(param);
+        const resProduct = await getAll();
+        const dataProduct = await resProduct.data;
+        const lastPage = Math.ceil(dataProduct.length / 20);
 
-        const { data } = await getAll();
+        const currentPage = Number(searchParam.get("_page"));
 
         const listItem = data.map(item => `
             <tr>
@@ -55,46 +63,65 @@ const AdminProduct = {
                 </div>
             </div>
             <main class="lg:flex lg:items-center lg:justify-center">
-            <div class="flex flex-col max-w-7xl">
+            <div class="flex flex-col max-w-7xl py-10 items-center gap-y-5">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <table class="max-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Id
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Name
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Image
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Description
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Price
-                            </th>
-                            <th scope="col" class="relative px-6 py-3">
-                                <span class="sr-only">Edit</span>
-                            </th>
-                            <th scope="col" class="relative px-6 py-3">
-                                <span class="sr-only">Delete</span>
-                            </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            ${listItem}
-                        </tbody>
+                            <thead class="bg-gray-50">
+                                <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Id
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Name
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Image
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Description
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Price
+                                </th>
+                                <th scope="col" class="relative px-6 py-3">
+                                    <span class="sr-only">Edit</span>
+                                </th>
+                                <th scope="col" class="relative px-6 py-3">
+                                    <span class="sr-only">Delete</span>
+                                </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                ${listItem}
+                            </tbody>
                         </table>
                     </div>
                     </div>
                 </div>
+                <div class="flex gap-x-3 items-center">
+                    <a href="/admin/products?_page=1&_limit=20" class="w-12 h-6 rounded text-white text-center text-sm bg-blue-500">First</a>
+                    <a href="/admin/products?_page=${(currentPage - 1) == 1 ? lastPage : currentPage - 1}&_limit=20" class="w-12 h-6 text-center rounded text-white text-sm bg-blue-500">Prev</a>
+                    <div class="w-12 h-6 rounded bg-gray-100 text-center">${currentPage}</div>
+                    <a href="/admin/products?_page=${(currentPage + 1) == lastPage ? 1 : (currentPage + 1)}&_limit=20" class="w-12 h-6 text-center rounded text-white text-sm bg-blue-500">Next</a>
+                    <a href="/admin/products?_page=${lastPage}&_limit=20" class="w-12 h-6 rounded text-white text-center text-sm bg-blue-500">Last</a>
+                </div>
             </div>
             </main>
         `;
+    },
+    afterRender() {
+        const listBtnDelete = document.querySelectorAll("#btn-delete");
+        listBtnDelete.forEach(btn => {
+            const id = btn.dataset.id;
+            btn.onclick = async () => {
+                const { data } = await deleteProduct(id);
+                if (data) {
+                    reRender(AdminProduct, "main");
+                }
+            };
+        });
     }
 };
 
