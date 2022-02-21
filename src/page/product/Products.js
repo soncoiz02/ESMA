@@ -54,7 +54,7 @@ const Products = {
                             ${listCate}
                         </div>
                         <div class="flex flex-col gap-y-3">
-                            <h2 class="text-center font-bold text-gray-700 text-2xl pb-3 border-b border-gray-400">Sort</h2>
+                            <h2 class="text-center font-bold text-gray-700 text-2xl pb-3 border-b border-gray-400">Filter</h2>
                             <div class="flex flex-col gap-2">
                                 <p class="text-base font-bold text-gray-900">Sort by Price</p>
                                 <a href="/products/${cate}?${searchVal ? `q=${searchVal}&` : ""}_page=1&_limit=20&_sort=price&_order=asc">Low to High</a>

@@ -42,7 +42,7 @@ const AdminProduct = {
         `).join("");
 
         return /*html*/`
-            <div class="lg:flex lg:items-center lg:justify-between py-5 px-5">
+            <div class="lg:flex lg:items-center lg:justify-between py-5 px-5 max-w-7xl flex mx-auto">
                 <div class="flex-1 min-w-0">
                 <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
                     Admin Products
@@ -64,6 +64,10 @@ const AdminProduct = {
             </div>
             <main class="lg:flex lg:items-center lg:justify-center">
             <div class="flex flex-col max-w-7xl py-10 items-center gap-y-5">
+                <form class="flex- items-center w-96 h-10 rounded-[50px] overflow-hidden relative">
+                    <input type="text" id="search" class="w-full h-full py-3 px-5 bg-gray-200 outline-none" placeholder="Search">
+                    <button id="btn-search" class="absolute right-3 bg-blue-500 text-white rounded-[50px] px-3 py-1 top-1">Search</button>
+                </form>
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -122,6 +126,15 @@ const AdminProduct = {
                 }
             };
         });
+
+        const btnSearch = document.querySelector("#btn-search");
+        btnSearch.onclick = (e) => {
+            e.preventDefault();
+            const searchVal = document.querySelector("#search").value.trim();
+            if (searchVal) {
+                location.href = `/admin/products?_page=1&_limit=20&q=${searchVal}`;
+            }
+        };
     }
 };
 
